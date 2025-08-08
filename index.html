@@ -778,14 +778,14 @@
                 }, 2000);
             }
             
-            // Mock result generators
+            // Mock result generators - VERSIONES MEJORADAS
             function generateContractAnalysis(contract) {
                 return `
                     <h2 class="text-2xl font-bold mb-4 serif-font">Informe de Inteligencia Contractual v4.0</h2>
                     
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold mb-2">1. Diagnóstico General</h3>
-                        <p>El contrato analizado corresponde a un acuerdo de tipo comercial con cláusulas estándar de la industria. Se identifican áreas de mejora significativas en relación con la protección de las partes y la gestión de riesgos.</p>
+                        <h3 class="text-xl font-semibold mb-2">1. Diagnóstico General y Contexto Jurídico</h3>
+                        <p>El contrato analizado corresponde a un contrato de arrendamiento de terreno agrícola en Morelia, Michoacán, regulado por el Código Civil del Estado de Michoacán y la Ley Agraria. Este tipo de contratos es particularmente relevante en la región debido a la importancia del cultivo de aguacate en la economía local, que representa más del 30% del PIB agrícola estatal. El contrato presenta deficiencias significativas en protección de ambas partes, especialmente en lo referente a mejoras, rescisión y aspectos fiscales relevantes para la actividad agroexportadora.</p>
                     </div>
                     
                     <div class="mb-6">
@@ -798,26 +798,37 @@
                                         <th class="py-2 px-4 border-b text-left">Riesgo Identificado</th>
                                         <th class="py-2 px-4 border-b text-left">Impacto Financiero</th>
                                         <th class="py-2 px-4 border-b text-left">Nivel de Amenaza</th>
+                                        <th class="py-2 px-4 border-b text-left">Fundamento Legal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="py-2 px-4 border-b">Cláusula 5.2</td>
-                                        <td class="py-2 px-4 border-b">Falta de definición clara sobre penalizaciones por incumplimiento</td>
-                                        <td class="py-2 px-4 border-b">Medio: $15,000 - $30,000 MXN</td>
-                                        <td class="py-2 px-4 border-b"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">Medio</span></td>
+                                        <td class="py-2 px-4 border-b">Cláusula Cuarta</td>
+                                        <td class="py-2 px-4 border-b">Mejoras a favor del arrendador sin compensación</td>
+                                        <td class="py-2 px-4 border-b">Crítico: $2-5 millones MXN</td>
+                                        <td class="py-2 px-4 border-b"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">Crítico</span></td>
+                                        <td class="py-2 px-4 border-b">Art. 2398 CC Michoacán</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Cláusula Quinta</td>
+                                        <td class="py-2 px-4 border-b">Rescisión sin notificación previa</td>
+                                        <td class="py-2 px-4 border-b">Alto: $500,000 - $1 millón MXN</td>
+                                        <td class="py-2 px-4 border-b"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">Alto</span></td>
+                                        <td class="py-2 px-4 border-b">Art. 2404 CC Michoacán</td>
                                     </tr>
                                     <tr>
                                         <td class="py-2 px-4 border-b">Omisión</td>
-                                        <td class="py-2 px-4 border-b">Ausencia de cláusula de confidencialidad</td>
-                                        <td class="py-2 px-4 border-b">Alto: $50,000 - $100,000 MXN</td>
-                                        <td class="py-2 px-4 border-b"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">Alto</span></td>
+                                        <td class="py-2 px-4 border-b">Ausencia de cláusula de fuerza mayor</td>
+                                        <td class="py-2 px-4 border-b">Medio: $300,000 - $600,000 MXN</td>
+                                        <td class="py-2 px-4 border-b"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">Medio</span></td>
+                                        <td class="py-2 px-4 border-b">Art. 1796 CC Federal</td>
                                     </tr>
                                     <tr>
-                                        <td class="py-2 px-4 border-b">Cláusula 8.1</td>
-                                        <td class="py-2 px-4 border-b">Jurisdicción exclusiva a favor de la contraparte</td>
-                                        <td class="py-2 px-4 border-b">Crítico: $100,000+ MXN</td>
-                                        <td class="py-2 px-4 border-b"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">Crítico</span></td>
+                                        <td class="py-2 px-4 border-b">Omisión</td>
+                                        <td class="py-2 px-4 border-b">Falta de regulación fiscal para IETU e ISR</td>
+                                        <td class="py-2 px-4 border-b">Alto: $400,000 - $800,000 MXN</td>
+                                        <td class="py-2 px-4 border-b"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">Alto</span></td>
+                                        <td class="py-2 px-4 border-b">Ley del ISR Art. 125</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -825,17 +836,37 @@
                     </div>
                     
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold mb-2">3. Recomendaciones Estratégicas</h3>
+                        <h3 class="text-xl font-semibold mb-2">3. Análisis de Cláusulas Críticas Ausentes</h3>
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Cláusula de Fuerza Mayor</h4>
+                                <p>El contrato no contempla situaciones de fuerza mayor (fenómenos naturales, plagas, cambios regulatorios) que podrían afectar el cultivo de aguacate. Esto expone al arrendatario a responsabilidades por eventos fuera de su control. En Michoacán, eventos como la helada de 2021 que afectó el 30% de la producción de aguacate demuestran la importancia de esta cláusula.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Cláusula de Subarrendamiento</h4>
+                                <p>No se establece si el arrendatario puede subarrendar total o parcialmente el terreno, lo cual es común en operaciones agrícolas de gran escala. La Ley Agraria en su artículo 79 permite el subarrendamiento con autorización del arrendador, pero el contrato debería especificar las condiciones.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Cláusula de Mantenimiento y Conservación</h4>
+                                <p>No se definen responsabilidades específicas sobre mantenimiento de infraestructura, sistemas de riego o conservación del suelo, elementos críticos para el cultivo de aguacate. La Secretaría de Agricultura y Desarrollo Rural (SADER) tiene normas específicas para el manejo sostenible de suelos en cultivos de aguacate que deberían considerarse.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">4. Recomendaciones Estratégicas</h3>
                         <ul class="list-disc pl-5 space-y-2">
-                            <li><strong>Cláusula de Penalizaciones:</strong> Implementar una cláusula clara que establezca penalizaciones del 5% sobre el valor del contrato por cada día de retraso.</li>
-                            <li><strong>Confidencialidad:</strong> Añadir una cláusula de confidencialidad con vigencia de 5 años posteriores a la terminación del contrato.</li>
-                            <li><strong>Jurisdicción:</strong> Modificar la cláusula para establecer jurisdicción concurrente o someter a arbitraje de la Cámara de Comercio de Morelia.</li>
+                            <li><strong>Compensación por mejoras:</strong> Modificar la Cláusula Cuarta para establecer que el arrendatario tendrá derecho a una compensación del 70% del valor de las mejoras realizadas al término del contrato, o la posibilidad de retirar las mejoras móviles. Esto se alinea con el Artículo 2398 del Código Civil de Michoacán que establece el derecho a compensación por mejoras útiles.</li>
+                            <li><strong>Procedimiento de rescisión:</strong> Reemplazar la Cláusula Quinta por un procedimiento que requiera notificación por escrito con 30 días de antelación y oportunidad de subsanar el incumplimiento. Esto cumple con los principios de proporcionalidad y debido proceso establecidos en la jurisprudencia del Tribunal Superior de Justicia de Michoacán.</li>
+                            <li><strong>Cláusula de fuerza mayor:</strong> Añadir una cláusula detallada que especifique eventos de fuerza mayor aplicables al sector agrícola michoacano (heladas, sequías, plagas como la broca del aguacate), incluyendo el procedimiento para notificar y las consecuencias contractuales.</li>
+                            <li><strong>Aspectos fiscales:</strong> Incluir cláusulas que regulen la responsabilidad fiscal de cada parte, especialmente en relación con el IETU y el ISR por ingresos por arrendamiento, considerando las disposiciones fiscales específicas para actividades agrícolas en Michoacán.</li>
+                            <li><strong>Seguro agrícola:</strong> Establecer la obligación del arrendatario de contratar un seguro agrícola que cubra al menos el 80% del valor de la producción, con cobertura específica para riesgos prevalentes en la región como heladas, vientos fuertes y plagas.</li>
                         </ul>
                     </div>
                     
                     <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-brand-blue">
                         <h4 class="font-bold mb-2">ROI de la Mitigación</h4>
-                        <p>La implementación de estas recomendaciones reduciría el riesgo legal en un 87% y representaría un ahorro potencial de $125,000 - $180,000 MXN en costos de litigio.</p>
+                        <p>La implementación de estas recomendaciones reduciría el riesgo legal en un 92% y representaría un ahorro potencial de $3.2 - $7.4 millones MXN en costos de litigio y pérdidas operativas a lo largo del contrato. Además, mejoraría la relación comercial entre las partes y proporcionaría mayor seguridad jurídica para la inversión en el cultivo de aguacate, considerando que una hectárea de aguacate en producción representa una inversión promedio de $150,000 MXN en Michoacán.</p>
                     </div>
                 `;
             }
@@ -845,34 +876,66 @@
                     <h2 class="text-2xl font-bold mb-4 serif-font">Directiva de Campaña Legal v4.0</h2>
                     
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold mb-2">1. Teatro de Operaciones</h3>
-                        <p>El caso se desarrolla en el ámbito del derecho agrario y de aguas en Michoacán, con implicaciones ambientales y de propiedad comunitaria. Los activos en disputa incluyen derechos de uso de agua y terrenos agrícolas.</p>
+                        <h3 class="text-xl font-semibold mb-2">1. Teatro de Operaciones y Objetivos Estratégicos</h3>
+                        <p>Conflicto por derechos de agua entre productor agroexportador con concesión federal y ejido con derechos históricos en Uruapan, Michoacán. Activos en disputa: acceso a 50 l/s de agua, inversión de $8 millones en plantaciones, contratos de exportación por $15 millones anuales. Objetivo primario: garantizar acceso continuo al agua para mantener operaciones comerciales. Objetivo secundario: establecer un precedente favorable para productores agrícolas en la región.</p>
                     </div>
                     
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold mb-2">2. Mapeo de Stakeholders</h3>
+                        <h3 class="text-xl font-semibold mb-2">2. Mapeo de Stakeholders y Análisis de Inteligencia</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-semibold mb-2">Adversario Principal</h4>
-                                <p>Ejido colindante con representación legal activa. Historial de litigios similares con resolución favorable en 60% de los casos.</p>
+                                <h4 class="font-semibold mb-2">Ejido San Miguel (Adversario Principal)</h4>
+                                <p><strong>Perfil:</strong> Población: 1,200 habitantes. Líder: Carlos Ramírez (influencia local fuerte). Historial de conflictos similares con 3 productores en los últimos 10 años, con resolución favorable en 2 casos.</p>
+                                <p><strong>Puntos débiles:</strong> Documentación desorganizada, dependencia económica de programas gubernamentales, falta de asesoría legal especializada.</p>
+                                <p><strong>Motivación:</strong> Preservar recursos para subsistencia y posible expansión agrícola. Presión interna por mejorar condiciones de vida.</p>
+                                <p><strong>Estrategia probable:</strong> Bloqueos físicos, campañas de desprestigio, apelación a autoridades agrarias y ambientales.</p>
                             </div>
                             <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-semibold mb-2">Autoridades Involucradas</h4>
-                                <p>Consejo de Cuenca Lerma-Chapala, Procuraduría Agraria, Tribunal Superior de Justicia de Michoacán.</p>
+                                <h4 class="font-semibold mb-2">CONAGUA (Autoridad Clave)</h4>
+                                <p><strong>Perfil:</strong> Delegado en Michoacán: Ing. María González. Postura técnica, basada en concesiones vigentes.</p>
+                                <p><strong>Precedentes:</strong> Ha respaldado concesiones federales sobre derechos históricos en 75% de casos similares. En 2022, emitió 15 resoluciones favorables a concesionarios en la región de Uruapan.</p>
+                                <p><strong>Punto de presión:</strong> Informes técnicos sobre disponibilidad hídrica en la región. Estudio hidrológico de 2021 indica que el acuífero de Uruapan tiene un déficit de 15 hm³/año.</p>
+                                <p><strong>Estrategia probable:</strong> Solicitar estudios técnicos adicionales, proponer medición conjunta de flujos, posible reducción de volumen concesionado.</p>
                             </div>
                             <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-semibold mb-2">Actores Políticos</h4>
-                                <p>Gobierno del Estado de Michoacán, diputados locales de la región, presidentes municipales de Uruapan y Peribán.</p>
+                                <h4 class="font-semibold mb-2">Gobierno del Estado de Michoacán</h4>
+                                <p><strong>Perfil:</strong> Gobernador: Alfredo Ramírez Bedolla. Secretario de Desarrollo Rural: Juan Hernández.</p>
+                                <p><strong>Interés:</strong> Evitar conflicto social que afecte imagen estatal y producción de aguacate (sector estratégico que genera $18,000 millones MXN anuales).</p>
+                                <p><strong>Capacidad de influencia:</strong> Media en CONAGUA, alta en autoridades municipales. Controla programas de apoyo a productores.</p>
+                                <p><strong>Estrategia probable:</strong> Mediación, propuesta de soluciones intermedias, posible oferta de apoyos compensatorios al ejido.</p>
                             </div>
                             <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-semibold mb-2">Organizaciones de la Sociedad Civil</h4>
-                                <p>ONGs ambientalistas locales, asociaciones de productores de aguacate, comunidades indígenas de la zona.</p>
+                                <h4 class="font-semibold mb-2">Organizaciones Ambientalistas</h4>
+                                <p><strong>Perfil:</strong> Principal: Agua para Michoacán A.C. Líder: Laura Torres. Alcance: regional, con presencia en medios locales.</p>
+                                <p><strong>Argumento:</strong> Sobreexplotación del acuífero de Uruapan. Citan estudio de la UMSNH de 2020 que indica descenso de 2.5 m/año en los niveles del acuífero.</p>
+                                <p><strong>Estrategia:</strong> Campañas de denuncia y presión a autoridades. Han organizado 3 manifestaciones en los últimos 6 meses con asistencia promedio de 200 personas.</p>
+                                <p><strong>Punto débil:</strong> Falta de estudios técnicos propios. Sus argumentos se basan en datos de terceros que no consideran el manejo eficiente del agua por parte del productor.</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold mb-2">3. Hoja de Ruta Estratégica</h3>
+                        <h3 class="text-xl font-semibold mb-2">3. Fundamentación Jurídica Específica</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">Marco Legal Aplicable</h4>
+                                <ul class="list-disc pl-5">
+                                    <li><strong>Constitución Política de los Estados Unidos Mexicanos:</strong> Artículo 27 (propiedad originaria del agua, concesiones)</li>
+                                    <li><strong>Ley de Aguas Nacionales:</strong> Artículos 3, 14, 22, 27 (derechos de uso, concesiones, prioridades)</li>
+                                    <li><strong>Código Agrario:</strong> Artículos 59, 60, 61 (derechos de ejidos sobre recursos naturales)</li>
+                                    <li><strong>Ley de Amparo:</strong> Artículos 107, 114 (amparo contra actos de autoridad)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">Jurisprudencia Relevante</h4>
+                                <p><strong>Tesis: I.7o.A. J/10 (10a.)</strong> - "Los derechos de uso de agua otorgados mediante concesión federal prevalecen sobre los derechos históricos cuando estos no han sido formalmente reconocidos mediante título de concesión". Semanario Judicial de la Federación, Décima Época, Libro 23, Tomo I, marzo 2015, p. 875. Esta tesis es particularmente relevante ya que establece el criterio que ha seguido el Segundo Tribunal Colegiado en materia administrativa del Octavo Circuito, que incluye a Michoacán.</p>
+                                <p><strong>Tesis: I.1o.A.48 A (10a.)</strong> - "Los ejidos tienen preferencia para obtener concesiones de agua para uso agrícola en sus terrenos, pero no pueden desconocer concesiones vigentes otorgadas a terceros". Semanario Judicial de la Federación, Décima Época, Libro 35, Tomo II, septiembre 2017, p. 1234. Esta jurisprudencia establece el equilibrio entre derechos ejidales y concesiones vigentes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">4. Hoja de Ruta Estratégica</h3>
                         <div class="overflow-x-auto">
                             <table class="min-w-full bg-white border border-gray-200">
                                 <thead>
@@ -881,26 +944,37 @@
                                         <th class="py-2 px-4 border-b text-left">Probabilidad de Éxito</th>
                                         <th class="py-2 px-4 border-b text-left">Tiempo Estimado</th>
                                         <th class="py-2 px-4 border-b text-left">Costo Estimado</th>
+                                        <th class="py-2 px-4 border-b text-left">Responsable</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="py-2 px-4 border-b">Mediación ante Procuraduría Agraria</td>
-                                        <td class="py-2 px-4 border-b">75%</td>
+                                        <td class="py-2 px-4 border-b">Mediación con apoyo de Secretaría de Desarrollo Agrario</td>
+                                        <td class="py-2 px-4 border-b">70%</td>
                                         <td class="py-2 px-4 border-b">2-3 meses</td>
-                                        <td class="py-2 px-4 border-b">$25,000 - $40,000 MXN</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-2 px-4 border-b">Juicio de Amparo Indirecto</td>
-                                        <td class="py-2 px-4 border-b">65%</td>
-                                        <td class="py-2 px-4 border-b">8-12 meses</td>
                                         <td class="py-2 px-4 border-b">$80,000 - $120,000 MXN</td>
+                                        <td class="py-2 px-4 border-b">Abogado especialista en derecho agrario</td>
                                     </tr>
                                     <tr>
-                                        <td class="py-2 px-4 border-b">Estrategia de Comunicación</td>
+                                        <td class="py-2 px-4 border-b">Amparo indirecto contra actos del ejido</td>
+                                        <td class="py-2 px-4 border-b">85%</td>
+                                        <td class="py-2 px-4 border-b">6-9 meses</td>
+                                        <td class="py-2 px-4 border-b">$250,000 - $350,000 MXN</td>
+                                        <td class="py-2 px-4 border-b">Abogado constitucionalista</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Gestión con CONAGUA para ratificación de concesión</td>
                                         <td class="py-2 px-4 border-b">90%</td>
+                                        <td class="py-2 px-4 border-b">1-2 meses</td>
+                                        <td class="py-2 px-4 border-b">$50,000 - $80,000 MXN</td>
+                                        <td class="py-2 px-4 border-b">Gestor especializado en recursos hídricos</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Estrategia de comunicación y relaciones públicas</td>
+                                        <td class="py-2 px-4 border-b">95%</td>
                                         <td class="py-2 px-4 border-b">Continuo</td>
-                                        <td class="py-2 px-4 border-b">$15,000 - $25,000 MXN</td>
+                                        <td class="py-2 px-4 border-b">$100,000 - $150,000 MXN</td>
+                                        <td class="py-2 px-4 border-b">Agencia de comunicación especializada</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -908,80 +982,122 @@
                     </div>
                     
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold mb-2">4. Simulación de Escenarios</h3>
+                        <h3 class="text-xl font-semibold mb-2">5. Arsenal de Refutación</h3>
                         <div class="space-y-4">
                             <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
-                                <h4 class="font-semibold mb-2">Escenario 1: Fallo desfavorable en mediación</h4>
-                                <p><strong>Plan B:</strong> Presentar amparo contra la resolución de la Procuraduría Agraria, argumentando violación al debido proceso y falta de fundamentación técnica en la determinación de derechos de agua.</p>
+                                <h4 class="font-semibold mb-2">Argumento Esperado del Ejido: "Derechos históricos previos a la concesión"</h4>
+                                <p><strong>Contra-argumentación:</strong> Los derechos históricos no tienen validez jurídica sin reconocimiento formal mediante título de concesión. La Ley de Aguas Nacionales establece claramente en su Artículo 14 que el uso del agua requiere concesión o asignación, independientemente de usos tradicionales. Además, la concesión federal tiene validez en todo el territorio nacional y prevalece sobre reclamos locales no formalizados, conforme a la jurisprudencia I.7o.A. J/10 (10a.) del Segundo Tribunal Colegiado en materia administrativa del Octavo Circuito.</p>
+                                <p><strong>Evidencia de apoyo:</strong> Copia certificada de la concesión federal expedida por CONAGUA en 2015, con vigencia hasta 2035. Informe técnico de CONAGUA de 2020 que reconoce la legalidad de la concesión.</p>
                             </div>
-                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
-                                <h4 class="font-semibold mb-2">Escenario 2: Oferta de acuerdo por la contraparte</h4>
-                                <p><strong>Plan B:</strong> Aceptar negociación con condiciones mínimas: reconocimiento del 70% de los derechos de agua actuales y formalización de un convenio de uso compartido con supervisión técnica.</p>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                                <h4 class="font-semibold mb-2">Argumento Esperado: "Sobreexplotación del acuífero"</h4>
+                                <p><strong>Contra-argumentación:</strong> Presentar estudios hidrológicos recientes que demuestren que la extracción actual está dentro de los límites sostenibles del acuífero. Destacar que el productor utiliza tecnología de riego de alta eficiencia (goteo) que reduce el consumo en un 40% comparado con métodos tradicionales. Proponer monitoreo conjunto con autoridades y ejido para transparentar el uso del recurso.</p>
+                                <p><strong>Evidencia de apoyo:</strong> Estudio hidrogeológico de la Universidad Michoacana de San Nicolás de Hidalgo (UMSNH) de 2022 que indica que el volumen concesionado representa solo el 3% de la recarga anual del acuífero. Certificado de eficiencia hídrica del Instituto Mexicano de Tecnología del Agua (IMTA) que reconoce el sistema de riego como modelo de sostenibilidad.</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-brand-blue">
                         <h4 class="font-bold mb-2">Recomendación Final</h4>
-                        <p>Iniciar con estrategia de mediación mientras se prepara paralelamente el amparo. Implementar campaña de comunicación para posicionar el caso como un referente en gestión sostenible del agua en la región.</p>
+                        <p>Implementar estrategia dual: 1) Iniciar mediación inmediata con participación de Secretaría de Desarrollo Agrario estatal, mientras 2) se prepara paralelamente el amparo. Desarrollar campaña de comunicación que posicione al productor como modelo de agricultura sostenible y generador de empleo en la región. Priorizar relación con CONAGUA para obtener respaldo técnico y jurídico a la concesión vigente. Considerar la posibilidad de ofrecer un acuerdo al ejido que incluya beneficios económicos y capacitación técnica, siempre manteniendo el reconocimiento de la concesión federal como condición innegociable.</p>
+                        <p><strong>Presupuesto total recomendado:</strong> $480,000 - $700,000 MXN para implementación completa de la estrategia, con un ROI estimado del 300% considerando la protección de una inversión de $8 millones MXN y contratos de exportación por $15 millones MXN anuales.</p>
                     </div>
                 `;
             }
             
             function generateDocumentDraft(docType, details) {
+                // Extraer información específica de los detalles
+                const actor = details.includes('Actor:') ? details.match(/Actor:\s*([^\n]+)/)[1].trim() : 'NOMBRE DEL ACTOR';
+                const demandado = details.includes('Demandado:') ? details.match(/Demandado:\s*([^\n]+)/)[1].trim() : 'NOMBRE DEL DEMANDADO';
+                const juzgado = details.includes('Juzgado:') ? details.match(/Juzgado:\s*([^\n]+)/)[1].trim() : 'Juzgado correspondiente';
+                const expediente = details.includes('Expediente:') ? details.match(/Expediente:\s*([^\n]+)/)[1].trim() : 'NÚMERO DE EXPEDIENTE';
+                
+                // Extraer hechos si están disponibles
+                let hechos = '';
+                if (details.includes('Hechos:')) {
+                    const hechosMatch = details.match(/Hechos:\s*([^\n]+)/);
+                    if (hechosMatch) {
+                        hechos = hechosMatch[1].trim();
+                    }
+                }
+                
                 return `
                     <h2 class="text-2xl font-bold mb-4 serif-font">BORRADOR DE ESCRITO LEGAL: ${docType.toUpperCase()}</h2>
                     
                     <div class="mb-6 bg-gray-50 p-4 rounded-lg">
                         <h3 class="text-lg font-semibold mb-2">Datos del Documento</h3>
                         <p><strong>Tipo:</strong> ${docType}</p>
-                        <p><strong>Juzgado:</strong> Juzgado Primero de Distrito en Materia Civil en el Estado de Michoacán</p>
-                        <p><strong>Expediente:</strong> 123/2023</p>
+                        <p><strong>Juzgado:</strong> ${juzgado}</p>
+                        <p><strong>Expediente:</strong> ${expediente}</p>
                     </div>
                     
                     <div class="mb-6">
                         <h3 class="text-lg font-semibold mb-2">Contenido del Documento</h3>
                         <div class="bg-white border border-gray-200 rounded-lg p-6">
-                            <p class="mb-4"><strong>C. JUEZ PRIMERO DE DISTRITO EN MATERIA CIVIL EN EL ESTADO DE MICHOACÁN</strong></p>
+                            <p class="mb-4"><strong>C. ${juzgado.toUpperCase()}</strong></p>
                             <p class="mb-4"><strong>P R E S E N T E</strong></p>
                             
-                            <p class="mb-4">${details.includes('Actor') ? details.match(/Actor:\s*(.*)/)[1].toUpperCase() : 'NOMBRE DEL ACTOR'}, por mi propio derecho y señalando como domicilio para oír y recibir notificaciones el ubicado en [DOMICILIO], ante Usted con el debido respeto comparezco y expongo:</p>
+                            <p class="mb-4">${actor.toUpperCase()}, por mi propio derecho y señalando como domicilio para oír y recibir notificaciones el ubicado en [DOMICILIO COMPLETO], autorizando para oír notificaciones en estrados a los licenciados [NOMBRES DE ABOGADOS AUTORIZADOS], ante Usted con el debido respeto comparezco y expongo:</p>
                             
-                            <p class="mb-4">Que por medio del presente escrito, vengo a promover demanda de [TIPO DE DEMANDA] en contra de ${details.includes('Demandado') ? details.match(/Demandado:\s*(.*)/)[1].toUpperCase() : 'NOMBRE DEL DEMANDADO'}, con fundamento en los siguientes:</p>
+                            <p class="mb-4">Que por medio del presente escrito, vengo a promover ${docType.toLowerCase()} en contra de ${demandado.toUpperCase()}, con fundamento en los siguientes:</p>
                             
                             <h4 class="font-semibold mb-2 mt-4">HECHOS</h4>
                             <ol class="list-decimal pl-5 mb-4">
-                                <li class="mb-2">Es [HECHO 1 EXTRAÍDO DE LOS DETALLES PROPORCIONADOS].</li>
-                                <li class="mb-2">Como consecuencia de lo anterior, [HECHO 2 EXTRAÍDO DE LOS DETALLES PROPORCIONADOS].</li>
-                                <li class="mb-2">El demandado ha incurrido en [INCUMPLIMIENTO O VIOLACIÓN], causándome daños y perjuicios.</li>
+                                ${hechos ? `<li class="mb-2">${hechos}</li>` : ''}
+                                <li class="mb-2">Como consecuencia de lo anterior, el demandado ha incurrido en incumplimiento de sus obligaciones contractuales, causando daños y perjuicios a mi representada.</li>
+                                <li class="mb-2">A pesar de los requerimientos formales realizados, el demandado ha persistido en su incumplimiento, obligando a mi representada a iniciar las acciones legales correspondientes.</li>
                             </ol>
                             
                             <h4 class="font-semibold mb-2 mt-4">DERECHO</h4>
-                            <p class="mb-4">Fundo la presente acción en lo dispuesto por los artículos [ARTÍCULOS RELEVANTES DEL CÓDIGO CIVIL PARA EL ESTADO DE MICHOACÁN] y [ARTÍCULOS RELEVANTES DEL CÓDIGO DE PROCEDIMIENTOS CIVILES], así como en la jurisprudencia que a continuación se cita:</p>
+                            <p class="mb-4">Fundo la presente acción en lo dispuesto por los artículos 1796, 1797, 1801, 1802, 2104 y 2110 del Código Civil Federal; 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 del Código de Comercio; así como en los artículos 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 de la Convención de las Naciones Unidas sobre los Contratos de Compraventa Internacional de Mercaderías.</p>
+                            
+                            <p class="mb-4">Asimismo, la presente acción se sustenta en la siguiente jurisprudencia:</p>
                             
                             <h4 class="font-semibold mb-2 mt-4">JURISPRUDENCIA</h4>
-                            <p class="mb-4">Tesis: [TESIS RELEVANTE], Semanario Judicial de la Federación y su Gaceta, [AÑO], [TOMO], [PÁGINA].</p>
+                            <p class="mb-4"><strong>Tesis: I.4o.C. J/10 (10a.)</strong> - "En los contratos de compraventa internacional regidos por la Convención de Viena, el comprador que rechaza la mercancía sin fundamento alguno y sin seguir los procedimientos establecidos en el contrato, incurre en incumplimiento contractual y está obligado a pagar el precio convenido más los daños y perjuicios correspondientes". Semanario Judicial de la Federación y su Gaceta, Décima Época, Libro 42, Tomo II, junio 2018, p. 1567.</p>
+                            
+                            <p class="mb-4"><strong>Tesis: I.3o.C.47 K (10a.)</strong> - "La carga de la prueba en relación con la supuesta falta de calidad de la mercancía corresponde al comprador que alega tal defecto, quien debe demostrarlo mediante peritajes técnicos realizados con oportunidad y conforme a los procedimientos pactados". Semanario Judicial de la Federación y su Gaceta, Décima Época, Libro 38, Tomo I, diciembre 2017, p. 987.</p>
                             
                             <h4 class="font-semibold mb-2 mt-4">PRESTACIONES</h4>
                             <ol class="list-decimal pl-5 mb-4">
-                                <li class="mb-2">Se condene al demandado al pago de la cantidad de $[CANTIDAD] MXN por concepto de [CONCEPTO].</li>
-                                <li class="mb-2">Se ordene al demandado a [ACCIÓN ESPECÍFICA QUE DEBE REALIZAR].</li>
-                                <li class="mb-2">El pago de las costas y gastos procesales generados.</li>
+                                <li class="mb-2">Se condene a la demandada ${demandado.toUpperCase()} a pagar a mi representada la cantidad de $2,500,000.00 MXN (dos millones quinientos mil pesos 00/100 M.N.) por concepto del valor de los 8 contenedores de aguacate no pagados.</li>
+                                <li class="mb-2">Se condene a la demandada a pagar los intereses moratorios calculados al 6% mensual sobre la cantidad antes mencionada, desde el 20 de marzo de 2023 hasta la fecha de pago completo.</li>
+                                <li class="mb-2">Se condene a la demandada a pagar la cantidad de $500,000.00 MXN (quinientos mil pesos 00/100 M.N.) por concepto de daños y perjuicios sufridos por mi representada como consecuencia del incumplimiento contractual.</li>
+                                <li class="mb-2">Se condene a la demandada al pago de las costas y gastos procesales que se generen con motivo del presente juicio.</li>
+                            </ol>
+                            
+                            <h4 class="font-semibold mb-2 mt-4">PRUEBAS</h4>
+                            <ol class="list-decimal pl-5 mb-4">
+                                <li class="mb-2">La instrumental de actuaciones que se origine con motivo de la presente demanda.</li>
+                                <li class="mb-2">La documental pública consistente en copia certificada del contrato de compraventa internacional celebrado entre las partes, de fecha 15 de enero de 2023.</li>
+                                <li class="mb-2">La documental privada consistente en documentos de embarque de los 20 contenedores de aguacate.</li>
+                                <li class="mb-2">La documental privada consistente en certificados de calidad emitidos por autoridad fitosanitaria competente.</li>
+                                <li class="mb-2">La documental privada consistente en conocimiento de embarque debidamente firmado por la demandada.</li>
+                                <li class="mb-2">La documental privada consistente en comunicaciones intercambiadas entre las partes relacionadas con el incumplimiento.</li>
+                                <li class="mb-2">La pericial en contabilidad, para cuantificar los daños y perjuicios sufridos por mi representada.</li>
+                                <li class="mb-2">La presuncional legal y humana en todo lo que favorezca a los intereses de mi representada.</li>
                             </ol>
                             
                             <p class="mb-4">PROTESTO LO NECESARIO</p>
                             
-                            <p class="mb-4">[CIUDAD], [FECHA]</p>
+                            <p class="mb-4">Morelia, Michoacán, a ${new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
                             
                             <p class="mb-4"><strong>ATENTAMENTE</strong></p>
                             
-                            <p>[NOMBRE DEL ACTOR O ABOGADO]</p>
+                            <p class="mb-4">${actor.toUpperCase()}</p>
+                            
+                            <p class="mb-4"><em>(Firma)</em></p>
+                            
+                            <p>Lic. [NOMBRE DEL ABOGADO]</p>
+                            <p>Tarjeta Profesional No. [NÚMERO DE CÉDULA PROFESIONAL]</p>
+                            <p>Cédula Profesional No. [NÚMERO DE CÉDULA]</p>
                         </div>
                     </div>
                     
                     <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-brand-blue">
                         <h4 class="font-bold mb-2">Instrucciones para uso</h4>
-                        <p>Este es un borrador generado automáticamente. Debe revisarse y adaptarse a las circunstancias específicas del caso antes de su presentación. Se recomienda verificar la vigencia de las disposiciones legales citadas.</p>
+                        <p>Este borrador debe ser revisado y adaptado por un abogado especializado en comercio internacional antes de su presentación. Se recomienda verificar la vigencia de las disposiciones legales citadas y adjuntar todos los documentos mencionados como pruebas. Es importante considerar aspectos de competencia internacional y posibles tratados aplicables entre México y Estados Unidos, especialmente el Tratado entre México, Estados Unidos y Canadá (T-MEC) en lo referente a comercio de productos agrícolas.</p>
+                        <p class="mt-2"><strong>Nota importante:</strong> Este documento es un borrador generado automáticamente y no constituye asesoría legal. Se recomienda supervisión profesional antes de su presentación ante autoridades judiciales.</p>
                     </div>
                 `;
             }
@@ -992,7 +1108,7 @@
                     
                     <div class="mb-6">
                         <h3 class="text-xl font-semibold mb-2">Resumen Ejecutivo</h3>
-                        <p>El análisis del texto proporcionado revela patrones consistentes en el estilo argumentativo, toma de decisiones y enfoques jurídicos. Este perfil estratégico permite anticipar comportamientos y optimizar la interacción con este actor legal.</p>
+                        <p>El análisis del extracto de sentencia revela un perfil judicial caracterizado por un formalismo riguroso, aplicación estricta de la ley y una tendencia a valorar objetivamente las pruebas documentales. El juez muestra preferencia por soluciones basadas en la normativa vigente y principios de seguridad jurídica, con menor énfasis en aspectos procesales tácticos o consideraciones de equidad material. Este perfil es consistente con la tendencia observada en el Tribunal Superior de Justicia de Michoacán en los últimos 5 años, donde se ha fortalecido el criterio de aplicación estricta de la norma.</p>
                     </div>
                     
                     <div class="mb-6">
@@ -1002,16 +1118,20 @@
                                 <h4 class="font-semibold mb-2">Fortalezas</h4>
                                 <ul class="list-disc pl-5">
                                     <li>Estructura lógica rigurosa en sus argumentaciones</li>
-                                    <li>Uso frecuente de precedentes jurisprudenciales</li>
-                                    <li>Capacidad para sintetizar cuestiones complejas</li>
+                                    <li>Capacidad para jerarquizar incumplimientos según su gravedad</li>
+                                    <li>Uso preciso de referencias legales específicas (artículos 2398 y 2404 CC Michoacán)</li>
+                                    <li>Coherencia entre el análisis fáctico y la conclusión jurídica</li>
+                                    <li>Preferencia por fundamentación técnica sobre argumentos subjetivos</li>
                                 </ul>
                             </div>
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <h4 class="font-semibold mb-2">Debilidades</h4>
                                 <ul class="list-disc pl-5">
-                                    <li>Tendencia a la rigidez interpretativa</li>
-                                    <li>Menor énfasis en aspectos procesales tácticos</li>
-                                    <li>Predisposición a argumentos formalistas sobre sustantivos</li>
+                                    <li>Tendencia al formalismo extremo ("interpretación literal y restrictiva")</li>
+                                    <li>Menor consideración de aspectos procesales (notificación oportuna)</li>
+                                    <li>Predisposición a soluciones radicales (rescisión contractual)</li>
+                                    <li>Limitada apertura a interpretaciones flexibles o contextualizadas</li>
+                                    <li>Subvaloración de argumentos basados en equidad o circunstancias atenuantes</li>
                                 </ul>
                             </div>
                         </div>
@@ -1022,16 +1142,25 @@
                         <div class="space-y-4">
                             <div class="bg-white border border-gray-200 rounded-lg p-4">
                                 <h4 class="font-semibold mb-2">Enfoque Principal</h4>
-                                <p>Preferencia por soluciones basadas en la literalidad de la norma y la doctrina establecida, con menor apertura a interpretaciones progresistas o adaptativas.</p>
+                                <p>Preferencia por soluciones basadas en la aplicación estricta de la normativa vigente y principios de seguridad jurídica. El juez muestra una clara inclinación hacia interpretaciones literales y restrictivas de los contratos, evitando extensiones analógicas o consideraciones de equidad material. Este enfoque se alinea con la tendencia jurisprudencial del Pleno del Tribunal Superior de Justicia de Michoacán que ha fortalecido los criterios de seguridad jurídica en los últimos años.</p>
                             </div>
                             <div class="bg-white border border-gray-200 rounded-lg p-4">
                                 <h4 class="font-semibold mb-2">Criterios de Ponderación</h4>
-                                <p>Jerarquía clara de factores: 1) Texto legal, 2) Jurisprudencia vinculante, 3) Doctrina académica, 4) Circunstancias particulares del caso.</p>
+                                <p>Jerarquía clara de factores: 1) Texto legal específico (artículos del Código Civil), 2) Pruebas documentales objetivas (recibos, fotografías), 3) Cumplimiento formal de obligaciones contractuales, 4) Principios de seguridad jurídica. Los aspectos procesales y circunstanciales tienen menor peso en su análisis. En particular, valora especialmente las pruebas documentales que objetivizan las afirmaciones de las partes.</p>
                             </div>
                             <div class="bg-white border border-gray-200 rounded-lg p-4">
                                 <h4 class="font-semibold mb-2">Sensibilidad a Argumentos</h4>
-                                <p>Mayor receptividad a argumentos técnicos-jurídicos bien fundamentados que a apelaciones emocionales o de equidad.</p>
+                                <p>Mayor receptividad a argumentos técnicos-jurídicos bien fundamentados con referencias legales específicas. Muestra menor apertura a argumentos basados en la equidad, circunstancias atenuantes o consideraciones procesales tácticas. En sus sentencias recientes, ha demostrado especial valoración de argumentos que citan jurisprudencia del Tribunal Superior de Justicia de Michoacán y tesis aisladas de la Suprema Corte de Justicia de la Nación.</p>
                             </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Análisis de Tendencias Jurisprudenciales</h3>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-semibold mb-2">Precedentes Relevantes</h4>
+                            <p>El juez ha seguido consistentemente la línea jurisprudencial establecida por el Tribunal Superior de Justicia de Michoacán en materia de contratos de arrendamiento. En particular, ha hecho suya la tesis "XXV.1o.C.1 K (10a.)" que establece que "la rescisión del contrato de arrendamiento procede cuando el incumplimiento del arrendador afecta sustancialmente el objeto del contrato, aunque existan incumplimientos menores por parte del arrendatario". Esta tendencia se ha reforzado en sus últimas 5 sentencias en casos similares.</p>
+                            <p class="mt-3">Asimismo, muestra especial atención a los criterios establecidos por la Suprema Corte de Justicia de la Nación en materia de derechos de los consumidores, particularmente en lo referente a la protección de la parte débil en contratos de adhesión, como se observa en su cita a la jurisprudencia 1a./J. 43/2019 (10a.).</p>
                         </div>
                     </div>
                     
@@ -1041,22 +1170,29 @@
                             <div class="flex items-start">
                                 <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">1</div>
                                 <div>
-                                    <h4 class="font-semibold">Formalismo Jurídico</h4>
-                                    <p>Tendencia a priorizar el cumplimiento de formalidades procesales sobre la justicia material del caso.</p>
+                                    <h4 class="font-semibold">Formalismo Jurídico Extremo</h4>
+                                    <p>Tendencia marcada a priorizar la aplicación literal de la norma sobre consideraciones de justicia material o equidad. Esto puede llevar a soluciones que aunque jurídicamente correctas, resulten injustas desde una perspectiva práctica. En el 85% de sus sentencias en contratos de arrendamiento, ha optado por la rescisión sobre soluciones correctivas.</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
                                 <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">2</div>
                                 <div>
-                                    <h4 class="font-semibold">Conservadurismo Interpretativo</h4>
-                                    <p>Resistencia a adoptar interpretaciones novedosas o alejadas de la tradición jurídica establecida.</p>
+                                    <h4 class="font-semibold">Preferencia por Soluciones Radicales</h4>
+                                    <p>Inclinación a resolver conflictos mediante medidas extremas como la rescisión contractual, en lugar de buscar soluciones intermedias o correctivas que preserven la relación contractual. En el último año, en el 70% de los casos de incumplimiento contractual ha optado por la rescisión en lugar de medidas menos drásticas.</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
                                 <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">3</div>
                                 <div>
-                                    <h4 class="font-semibold">Preferencia por la Seguridad Jurídica</h4>
-                                    <p>Inclinación a resolver casos de manera que genere mayor certeza y previsibilidad, incluso a costa de soluciones más equitativas.</p>
+                                    <h4 class="font-semibold">Subvaloración de Aspectos Procesales</h4>
+                                    <p>Tendencia a minimizar la importancia de aspectos procesales como la notificación oportuna, que aunque no eximen de responsabilidad principal, podrían atenuar consecuencias o modificar el alcance de la condena. En el extracto analizado, menciona la notificación oportuna como un factor pero no le otorga el peso que tendría en otros criterios judiciales.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">4</div>
+                                <div>
+                                    <h4 class="font-semibold">Rigidez Interpretativa</h4>
+                                    <p>Resistencia a considerar interpretaciones contextuales o teleológicas de las normas contractuales, limitándose al texto escrito sin considerar la intención real de las partes o las circunstancias del caso concreto. Esto se evidencia en su afirmación de que "la interpretación contractual debe realizarse de manera literal y restrictiva, atendiendo exclusivamente a lo pactado por las partes sin posibilidad de extensión analógica".</p>
                                 </div>
                             </div>
                         </div>
@@ -1066,12 +1202,39 @@
                         <h3 class="text-xl font-semibold mb-2">Recomendaciones Estratégicas</h3>
                         <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-brand-blue">
                             <ol class="list-decimal pl-5 space-y-2">
-                                <li><strong>Estructurar argumentos con base en precedentes:</strong> Utilizar jurisprudencia reciente y relevante para aumentar la persuasión.</li>
-                                <li><strong>Atender formalidades procesales con especial cuidado:</strong> Evitar objeciones basadas en aspectos técnicos o formales.</li>
-                                <li><strong>Presentar argumentos alternativos:</strong> Incluir tanto interpretaciones tradicionales como enfoques novedosos bien fundamentados.</li>
-                                <li><strong>Enfatizar la seguridad jurídica de la propuesta:</strong> Demostrar cómo la posición defendida genera mayor certeza jurídica.</li>
+                                <li><strong>Estructurar argumentos con base en disposiciones legales específicas:</strong> Utilizar referencias precisas a artículos del Código Civil de Michoacán y jurisprudencia aplicable. Evitar argumentos basados exclusivamente en la equidad o justicia material.</li>
+                                <li><strong>Presentar pruebas documentales sólidas:</strong> Priorizar pruebas objetivas como contratos, recibos, fotografías y peritajes técnicos. El juez valora especialmente este tipo de evidencia.</li>
+                                <li><strong>Anticipar y contrarrestar el formalismo extremo:</strong> Incluir argumentos que demuestren cómo una interpretación estricta de la norma en este caso concreto sí conduce a una solución justa, evitando que el juez perciba la necesidad de elegir entre legalidad y equidad.</li>
+                                <li><strong>Proponer soluciones intermedias:</strong> Aunque el juez tiende a soluciones radicales, presentar alternativas que preserven el contrato (como indemnizaciones o planes de cumplimiento) podría ser efectivo si se fundamentan jurídicamente.</li>
+                                <li><strong>Enfatizar la seguridad jurídica:</strong> Vincular los argumentos a principios de seguridad jurídica, ya que el juez muestra especial sensibilidad a este aspecto.</li>
+                                <li><strong>Preparar para posibles objeciones procesales:</strong> Aunque el juez subvalora aspectos procesales, es importante cumplir escrupulosamente con todos los requisitos formales para evitar objeciones que podrían debilitar la posición.</li>
+                                <li><strong>Citar jurisprudencia local:</strong> Hacer referencia específica a tesis y jurisprudencia del Tribunal Superior de Justicia de Michoacán, ya que el juez muestra especial atención a estos precedentes.</li>
                             </ol>
                         </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Predicción de Comportamiento en Escenarios Similares</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">En contratos de arrendamiento</h4>
+                                <p>Probablemente continuará aplicando criterios rigurosos de cumplimiento, con tendencia a resolver rescindiendo contratos cuando existan incumplimientos graves en obligaciones principales, incluso si hay incumplimientos menores por la otra parte. Especialmente sensible a incumplimientos que afecten la habitabilidad o seguridad del inmueble.</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">En casos de incumplimiento contractual bilateral</h4>
+                                <p>Realizará un análisis de gravedad de los incumplimientos, dando prioridad a las obligaciones principales sobre las accesorias, y probablemente sancionará más severamente el incumplimiento que afecte la esencia del contrato. Mostrará especial atención a la proporcionalidad de las consecuencias jurídicas frente a la gravedad del incumplimiento.</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">En interpretación contractual</h4>
+                                <p>Mantendrá su postura de interpretación literal y restrictiva, rechazando argumentos basados en la intención de las partes no expresamente documentada o en usos y costumbres no formalizados. Será particularmente receptivo a argumentos que citen jurisprudencia del Tribunal Superior de Justicia de Michoacán.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold mb-2">Conclusión Estratégica</h4>
+                        <p>El perfil del juez indica que la estrategia más efectiva ante él es la de un litigio técnicamente preciso, con sólidos fundamentos legales y pruebas documentales concluyentes. Se debe evitar argumentos emocionales o basados en la equidad, y en su lugar enfocarse en demostrar cómo la aplicación estricta de la norma en este caso concreto conduce a la solución deseada. La anticipación a su tendencia formalista y la preparación para contrarrestarla con argumentos jurídicos sólidos aumentará significativamente las posibilidades de éxito.</p>
+                        <p class="mt-2"><strong>Recomendación final:</strong> Preparar una estrategia que combine la precisión técnica con la citación exhaustiva de jurisprudencia local, especialmente del Tribunal Superior de Justicia de Michoacán, y presentar pruebas documentales que objetiven cada afirmación. Evitar argumentos basados en la equidad o circunstancias atenuantes, y en su lugar centrarse en la aplicación estricta de la norma y los principios de seguridad jurídica.</p>
                     </div>
                 `;
             }
