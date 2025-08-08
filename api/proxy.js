@@ -1,6 +1,8 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { PROMPTS } from './prompts.js';
 import { ERROR_MESSAGES } from './errorMessages.js';
+import fs from 'fs/promises';
+import path from 'path';
 
 // --- Corpus Legal Estratégico de Michoacán (para demo RAG) ---
 const sanLuisPotosiLegalCorpus = [
@@ -44,12 +46,15 @@ export default async (req, res) => {
         break;
 
       case 'document':
-        // Para el generador de escritos, el 'query' es el tipo de documento y el 'context' son los detalles.
-        finalPrompt = PROMPTS.GENERADOR_ESCRITOS_LEGALES(query, context);
+        const jurisprudenciaPath = path.resolve(process.cwd(), 'MEMORIA/jurisprudencia_michoacan.md');
+        const jurisprudencia = await fs.readFile(jurisprudenciaPath, 'utf-8');
+        finalPrompt = PROMPTS.GENERADOR_ESCRITOS_LEGALES(query, context, jurisprudencia);
         break;
 
       case 'perfiles':
-        finalPrompt = PROMPTS.PERFILADOR_ACTOR_LEGAL(query);
+        const actoresPath = path.resolve(process.cwd(), 'MEMORIA/actores_clave_michoacan.md');
+        const actoresConocidos = await fs.readFile(actoresPath, 'utf-8');
+        finalPrompt = PROMPTS.PERFILADOR_ACTOR_LEGAL(query, actoresConocidos);
         break;
 
       default:

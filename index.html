@@ -3,182 +3,1099 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEXIS PRODIGIUM - Michoacán - IA Estratégica para Abogados de Élite</title>
+    <title>LEXIS PRODIGIUM - IA Estratégica para Abogados de Élite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lora:wght@400;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-blue': { '500': '#00bcd4', '600': '#00acc1', '700': '#0097a7' },
-                        'brand-gray': { '100': '#f8f9fa', '700': '#343a40', '800': '#212529', '900': '#1a1d20' }
-                    },
-                    fontFamily: { 'sans': ['Montserrat', 'sans-serif'], 'body': ['Lato', 'sans-serif'], 'serif': ['Lora', 'serif'] }
-                }
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lora:wght@400;700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-blue: #00bcd4;
+            --brand-blue-dark: #0097a7;
+            --brand-gray-light: #f8f9fa;
+            --brand-gray: #343a40;
+            --brand-gray-dark: #212529;
+            --brand-gray-darker: #1a1d20;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--brand-gray-light);
+            color: var(--brand-gray);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .serif-font {
+            font-family: 'Lora', serif;
+        }
+        
+        .sidebar {
+            background-color: var(--brand-gray-darker);
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-item {
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-item.active {
+            background-color: rgba(0, 188, 212, 0.2);
+            border-left-color: var(--brand-blue);
+        }
+        
+        .brand-gradient {
+            background: linear-gradient(135deg, var(--brand-blue) 0%, #0097a7 100%);
+        }
+        
+        .demo-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .btn-primary {
+            background-color: var(--brand-blue);
+            color: white;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--brand-blue-dark);
+            transform: translateY(-2px);
+        }
+        
+        .result-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 188, 212, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--brand-blue);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--brand-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Lato', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--brand-blue);
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+        }
+        
+        .demo-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.9) 0%, rgba(0, 151, 167, 0.9) 100%), url('https://images.unsplash.com/photo-1589829085413-56b8ae6e8b49?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .stats-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--brand-blue);
+            margin-bottom: 8px;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--brand-blue);
+            margin-bottom: 12px;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                z-index: 100;
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 99;
+                display: none;
+            }
+            
+            .overlay.show {
+                display: block;
             }
         }
-    </script>
-<link rel="stylesheet" href="assets/css/style.css">
-<script>
-  window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments); };
-  window.va('event', 'page_view', { path: location.pathname });
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
+    </style>
 </head>
-<body class="bg-brand-gray-100 font-body text-brand-gray-800">
-    <div class="flex h-screen bg-brand-gray-900">
-        <!-- Sidebar -->
-        <aside id="sidebar" class="w-64 bg-brand-gray-900 text-white flex-shrink-0 p-4 space-y-6 font-sans transition-all duration-300 -translate-x-full sm:translate-x-0">
-             <div class="text-center pb-4 border-b border-gray-700">
-                <h1 class="text-3xl font-bold text-brand-blue-500 font-serif">LEXIS PRODIGIUM</h1>
-                <p class="text-xs text-gray-400 mt-1">IA Estratégica para Abogados de Élite en Michoacán</p>
+<body>
+    <!-- Overlay for mobile sidebar -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 serif-font">LEXIS PRODIGIUM</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">IA Estratégica para Abogados de Élite en Michoacán</p>
+            <div class="demo-badge mb-8">DEMO EXCLUSIVA</div>
+            <button id="start-demo-btn" class="btn-primary text-lg px-8 py-3">
+                Comenzar Demo <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="stats-card">
+                    <div class="stats-number">85%</div>
+                    <div class="text-gray-600">Reducción de tiempo en análisis</div>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-number">99.7%</div>
+                    <div class="text-gray-600">Precisión en detección de riesgos</div>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-number">24/7</div>
+                    <div class="text-gray-600">Asistencia legal continua</div>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-number">3X</div>
+                    <div class="text-gray-600">Aumento de eficiencia en litigios</div>
+                </div>
             </div>
-            <nav id="main-nav" class="space-y-2">
-                <a href="#" data-demo="contratos" class="nav-item active flex items-center px-4 py-2 rounded-md hover:bg-brand-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                    </svg>
+        </div>
+    </section>
+    
+    <!-- Main App -->
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar w-full md:w-64 text-white p-6 space-y-8">
+            <div class="text-center pb-4 border-b border-gray-700">
+                <h1 class="text-3xl font-bold text-brand-blue-500 serif-font">LEXIS PRODIGIUM</h1>
+                <p class="text-xs text-gray-400 mt-1">IA Estratégica para Abogados de Élite</p>
+            </div>
+            
+            <nav class="space-y-2">
+                <a href="#" data-demo="contratos" class="sidebar-item active flex items-center px-4 py-3 rounded-md">
+                    <i class="fas fa-file-contract w-5 mr-3"></i>
                     <span>Análisis de Contratos</span>
                 </a>
-                <a href="#" data-demo="strategy" class="nav-item flex items-center px-4 py-2 rounded-md hover:bg-brand-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
+                <a href="#" data-demo="strategy" class="sidebar-item flex items-center px-4 py-3 rounded-md">
+                    <i class="fas fa-chess w-5 mr-3"></i>
                     <span>Análisis de Estrategia</span>
                 </a>
-                <a href="#" data-demo="document" class="nav-item flex items-center px-4 py-2 rounded-md hover:bg-brand-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                <a href="#" data-demo="document" class="sidebar-item flex items-center px-4 py-3 rounded-md">
+                    <i class="fas fa-file-alt w-5 mr-3"></i>
                     <span>Generador de Escritos</span>
                 </a>
-                <a href="#" data-demo="perfiles" class="nav-item flex items-center px-4 py-2 rounded-md hover:bg-brand-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
+                <a href="#" data-demo="perfiles" class="sidebar-item flex items-center px-4 py-3 rounded-md">
+                    <i class="fas fa-user-secret w-5 mr-3"></i>
                     <span>Generador de Perfiles</span>
                 </a>
             </nav>
-            <div class="mt-auto p-4 text-center text-sm text-gray-400 hidden" id="usage-container">
-                <div id="usage-message">Cargando usos...</div>
+            
+            <div class="mt-auto pt-6 border-t border-gray-700">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-brand-blue-500 flex items-center justify-center mr-3">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium">Demo Exclusiva</p>
+                        <p class="text-xs text-gray-400">Versión de Evaluación</p>
+                    </div>
+                </div>
             </div>
         </aside>
-
+        
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <header class="bg-white shadow-md p-4 flex justify-between items-center">
-                 <button id="menu-btn" class="sm:hidden text-brand-gray-700">Menu</button>
-                 <span class="font-semibold px-3 py-1 bg-brand-blue-500 text-white rounded-full text-sm">DEMO EXCLUSIVA</span>
-            </header>
-
-            <main class="flex-1 overflow-y-auto bg-brand-gray-100 p-6">
-                <!-- Universal Result/Spinner Container -->
-                <div id="result-container" class="max-w-4xl mx-auto hidden">
-                    <div id="spinner" class="flex justify-center items-center p-10">
-                        <svg class="animate-spin -ml-1 mr-3 h-8 w-8 text-brand-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        <span class="text-lg font-semibold text-brand-gray-700">Analizando...</span>
+        <main class="flex-1 p-4 md:p-8">
+            <div class="flex justify-between items-center mb-8">
+                <button id="menu-btn" class="md:hidden text-brand-gray">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="demo-badge">
+                    <i class="fas fa-star mr-1"></i> DEMO EXCLUSIVA
+                </div>
+            </div>
+            
+            <!-- Result Container -->
+            <div id="result-container" class="result-container p-8 mb-8 hidden">
+                <div id="spinner" class="flex justify-center items-center py-12">
+                    <div class="spinner"></div>
+                    <span class="ml-4 text-lg font-semibold">Analizando...</span>
+                </div>
+                
+                <div id="error-message" class="hidden bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded">
+                    <div class="flex items-start">
+                        <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-3"></i>
+                        <div>
+                            <p class="font-bold">Ocurrió un error</p>
+                            <p id="error-text" class="text-sm"></p>
+                        </div>
                     </div>
-                    <div id="error-message" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md shadow-md">
-                        <div class="flex">
-                            <div class="py-1"><svg class="fill-current h-6 w-6 text-red-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 9a1 1 0 012 0v4a1 1 0 01-2 0V9zm2-4a1 1 0 11-2 0 1 1 0 012 0z"/></svg></div>
+                </div>
+                
+                <div id="result-content" class="prose max-w-none hidden"></div>
+                
+                <div id="result-actions" class="hidden mt-8 flex flex-wrap gap-3 justify-end">
+                    <button id="copy-button" class="flex items-center px-4 py-2 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition">
+                        <i class="fas fa-copy mr-2"></i> Copiar
+                    </button>
+                    <button id="download-button" class="flex items-center px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition">
+                        <i class="fas fa-download mr-2"></i> Descargar
+                    </button>
+                    <button id="google-search-button" class="flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">
+                        <i class="fas fa-search mr-2"></i> Buscar en Google
+                    </button>
+                </div>
+                
+                <div id="time-saving-message" class="hidden mt-6 p-4 bg-blue-50 border-l-4 border-brand-blue text-brand-blue rounded-lg">
+                    <div class="flex items-start">
+                        <i class="fas fa-clock text-brand-blue mt-1 mr-3"></i>
+                        <div>
+                            <p class="font-bold">¡Tiempo de Abogado Ahorrado!</p>
+                            <p>Este análisis, que normalmente tomaría <span id="human-time" class="font-semibold"></span> de investigación, fue generado por LEXIS PRODIGIUM en <span id="ai-time" class="font-semibold"></span>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Demos -->
+            <section id="demo-contratos" class="demo-section fade-in">
+                <div class="demo-card p-8">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-file-contract feature-icon"></i>
+                        <div>
+                            <h2 class="text-3xl font-bold mb-1 serif-font">Análisis de Contratos</h2>
+                            <p class="text-gray-600">Blindaje Legal Inteligente</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-6">Eleve la seguridad jurídica de sus acuerdos. Pegue el texto de un contrato o cláusula clave y LEXIS PRODIGIUM lo analizará en segundos, identificando riesgos ocultos, ambigüedades y omisiones bajo la legislación de Michoacán.</p>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">Texto del contrato</label>
+                        <textarea id="contratos-context" rows="8" class="input-field" placeholder="Ej: 'Contrato de aparcería agrícola para la producción y exportación de aguacate...' o 'Contrato de compraventa internacional de berries conforme a Incoterms...' (pegue aquí el texto del contrato a analizar)..."></textarea>
+                    </div>
+                    
+                    <button id="run-contratos" class="btn-primary w-full">
+                        <i class="fas fa-search mr-2"></i> Analizar Contrato
+                    </button>
+                    
+                    <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 rounded">
+                        <div class="flex items-start">
+                            <i class="fas fa-info-circle text-yellow-500 mt-1 mr-3"></i>
                             <div>
-                                <p class="font-bold">Ocurrió un error</p>
-                                <p id="error-text" class="text-sm"></p>
+                                <p class="font-bold">Versión DEMO:</p>
+                                <p class="text-sm">Funcionalidad completa en la versión premium. Por favor, pegue el texto directamente. La carga de documentos estará disponible en la versión completa.</p>
                             </div>
                         </div>
                     </div>
-                    <div id="result-content" class="hidden bg-white p-8 rounded-lg shadow-lg prose-lg text-gray-800 leading-relaxed"></div>
-                    <div id="result-actions" class="hidden mt-6 flex justify-end space-x-3">
-                        <button id="copy-button" class="px-5 py-2 bg-gray-200 text-gray-800 font-semibold rounded-md hover:bg-gray-300 transition-colors duration-300 flex items-center space-x-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                            <span>Copiar</span>
-                        </button>
-                        <button id="download-button" class="px-5 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-colors duration-300 flex items-center space-x-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                            </svg>
-                            <span>Descargar</span>
-                        </button>
-                        <button id="google-search-button" class="px-5 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors duration-300 flex items-center space-x-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                            <span>Buscar en Google</span>
-                        </button>
+                </div>
+            </section>
+            
+            <section id="demo-strategy" class="demo-section hidden">
+                <div class="demo-card p-8">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-chess feature-icon"></i>
+                        <div>
+                            <h2 class="text-3xl font-bold mb-1 serif-font">Análisis de Estrategia</h2>
+                            <p class="text-gray-600">La Brújula de su Litigio</p>
+                        </div>
                     </div>
-                    <div id="time-saving-message" class="hidden mt-4 p-4 bg-brand-blue-500 text-white rounded-md shadow-md text-center font-semibold">
-                        <p>¡Tiempo de Abogado Ahorrado!</p>
-                        <p>Este análisis, que normalmente tomaría <span id="human-time"></span> de investigación, fue generado por LEXIS PRODIGIUM en <span id="ai-time"></span>.</p>
+                    
+                    <p class="text-gray-700 mb-6">Transforme su enfoque litigioso. Pegue el resumen de los hechos de su caso y LEXIS PRODIGIUM, en segundos, le entregará un análisis FODA estratégico, identificando fortalezas procesales, oportunidades de argumentación, debilidades a mitigar y amenazas a anticipar.</p>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">Resumen del caso</label>
+                        <textarea id="strategy-context" rows="8" class="input-field" placeholder="Ej: 'Productor de aguacate en Uruapan enfrenta disputa por derechos de agua con ejido colindante...' o 'Empresa exportadora de Lázaro Cárdenas sufre el embargo de un contenedor en aduana...' (pegue aquí el resumen de los hechos del caso)..."></textarea>
+                    </div>
+                    
+                    <button id="run-strategy" class="btn-primary w-full">
+                        <i class="fas fa-chess-knight mr-2"></i> Analizar Estrategia
+                    </button>
+                    
+                    <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 rounded">
+                        <div class="flex items-start">
+                            <i class="fas fa-info-circle text-yellow-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-bold">Versión DEMO:</p>
+                                <p class="text-sm">Funcionalidad completa en la versión premium. Por favor, pegue el texto directamente. La carga de documentos estará disponible en la versión completa.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Demos -->
-                <section id="demo-contratos" class="demo-section active">
-                    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
-                        <h2 class="text-3xl font-bold text-brand-gray-800 mb-6 font-serif">Análisis de Contratos: Blindaje Legal Inteligente</h2>
-                        <p class="text-gray-600 mb-6">Eleve la seguridad jurídica de sus acuerdos. Pegue el texto de un contrato o cláusula clave y LEXIS PRODIGIUM lo analizará en segundos, identificando riesgos ocultos, ambigüedades y omisiones bajo la legislación de Michoacán. Obtenga un blindaje legal que antes tomaba horas.</p>
-                        <textarea id="contratos-context" rows="8" class="w-full mt-4 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-blue-500 focus:border-transparent transition" placeholder="Ej: 'CONTRATO DE PRESTACIÓN DE SERVICIOS PROFESIONALES que celebran...' (pegue aquí el texto del contrato a analizar)..."></textarea>
-                        <button id="run-contratos" class="w-full mt-6 bg-brand-blue-600 text-white font-bold py-3 px-4 rounded-md hover:bg-brand-blue-700 transition-colors duration-300 shadow-md">Analizar Contrato</button>
-                        <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-md">
-                            <p class="font-bold">Versión DEMO:</p>
-                            <p class="text-sm">Funcionalidad completa en la versión premium. Por favor, pegue el texto directamente. La carga de documentos estará disponible en la versión completa.</p>
+            </section>
+            
+            <section id="demo-document" class="demo-section hidden">
+                <div class="demo-card p-8">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-file-alt feature-icon"></i>
+                        <div>
+                            <h2 class="text-3xl font-bold mb-1 serif-font">Generador de Escritos</h2>
+                            <p class="text-gray-600">Redacción Legal Optimizada</p>
                         </div>
                     </div>
-                </section>
-                <section id="demo-strategy" class="demo-section">
-                    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
-                         <h2 class="text-3xl font-bold text-brand-gray-800 mb-6 font-serif">Análisis de Estrategia: La Brújula de su Litigio</h2>
-                         <p class="text-gray-600 mb-6">Transforme su enfoque litigioso. Pegue el resumen de los hechos de su caso y LEXIS PRODIGIUM, en segundos, le entregará un análisis FODA estratégico, identificando fortalezas procesales, oportunidades de argumentación, debilidades a mitigar y amenazas a anticipar, todo bajo el marco legal de Michoacán. Ahorre horas de investigación y gane claridad.</p>
-                         <textarea id="strategy-context" rows="8" class="w-full mt-4 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-blue-500 focus:border-transparent transition" placeholder="Ej: 'Un cliente en Guadalajara fue multado por exceso de velocidad...' (pegue aquí el resumen de los hechos del caso)..."></textarea>
-                         <button id="run-strategy" class="w-full mt-6 bg-brand-blue-600 text-white font-bold py-3 px-4 rounded-md hover:bg-brand-blue-700 transition-colors duration-300 shadow-md">Analizar Estrategia</button>
-                         <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-md">
-                            <p class="font-bold">Versión DEMO:</p>
-                            <p class="text-sm">Funcionalidad completa en la versión premium. Por favor, pegue el texto directamente. La carga de documentos estará disponible en la versión completa.</p>
+                    
+                    <p class="text-gray-700 mb-6">Agilice su redacción legal. Describa el tipo de documento que necesita (procesal o general) y proporcione los detalles esenciales. LEXIS PRODIGIUM generará un borrador profesional, estructurado y listo para ser adaptado a sus necesidades específicas.</p>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-medium mb-2">Tipo de documento</label>
+                        <input type="text" id="document-query" class="input-field" placeholder="Ej: 'Amparo indirecto contra laudo agrario en Michoacán' o 'Escrito de contestación a demanda mercantil por incumplimiento de contrato de suministro...'">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">Detalles del caso</label>
+                        <textarea id="document-context" rows="6" class="input-field" placeholder="Incluya nombres de las partes, fechas, hechos principales, juzgado, expediente y cualquier otra información relevante..."></textarea>
+                    </div>
+                    
+                    <button id="run-document" class="btn-primary w-full">
+                        <i class="fas fa-file-signature mr-2"></i> Generar Documento
+                    </button>
+                    
+                    <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 rounded">
+                        <div class="flex items-start">
+                            <i class="fas fa-info-circle text-yellow-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-bold">Versión DEMO:</p>
+                                <p class="text-sm">Funcionalidad completa en la versión premium. Por favor, pegue el texto directamente. La carga de documentos estará disponible en la versión completa.</p>
+                            </div>
                         </div>
                     </div>
-                </section>
-                <section id="demo-document" class="demo-section">
-                     <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
-                        <h2 class="text-3xl font-bold text-brand-gray-800 mb-6 font-serif">Generador de Escritos: Redacción Legal Optimizada</h2>
-                        <p class="text-gray-600 mb-6">Agilice su redacción legal. Describa el tipo de documento que necesita (procesal o general) y proporcione los detalles esenciales. LEXIS PRODIGIUM generará un borrador profesional, estructurado y listo para ser adaptado a sus necesidades específicas, ahorrándole tiempo valioso.</p>
-                        <input type="text" id="document-query" class="w-full mt-4 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-blue-500 focus:border-transparent transition" placeholder="Ej: Demanda inicial de divorcio incausado en Michoacán / Carta poder simple para recoger paquete...">
-                        <textarea id="document-context" rows="6" class="w-full mt-4 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-blue-500 focus:border-transparent transition" placeholder="Incluya nombres de las partes, fechas, hechos principales, juzgado, expediente y cualquier otra información relevante..."></textarea>
-                        <button id="run-document" class="w-full mt-6 bg-brand-blue-600 text-white font-bold py-3 px-4 rounded-md hover:bg-brand-blue-700 transition-colors duration-300 shadow-md">Generar Documento</button>
-                        <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-md">
-                            <p class="font-bold">Versión DEMO:</p>
-                            <p class="text-sm">Funcionalidad completa en la versión premium. Por favor, pegue el texto directamente. La carga de documentos estará disponible en la versión completa.</p>
+                </div>
+            </section>
+            
+            <section id="demo-perfiles" class="demo-section hidden">
+                <div class="demo-card p-8">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-user-secret feature-icon"></i>
+                        <div>
+                            <h2 class="text-3xl font-bold mb-1 serif-font">Generador de Perfiles</h2>
+                            <p class="text-gray-600">Inteligencia Estratégica de Actores Legales</p>
                         </div>
                     </div>
-                </section>
-                <section id="demo-perfiles" class="demo-section">
-                    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
-                        <h2 class="text-3xl font-bold text-brand-gray-800 mb-6 font-serif">Generador de Perfiles: Inteligencia Estratégica de Actores Legales</h2>
-                        <p class="text-gray-600 mb-6">Obtenga una ventaja estratégica. Pegue textos (ej. extractos de sentencias, escritos, transcripciones de audiencias) de un abogado o juez y LEXIS PRODIGIUM analizará su estilo, argumentos recurrentes, patrones de decisión y posibles sesgos, generando un perfil estratégico que le permitirá anticipar y optimizar su litigio.</p>
-                        <textarea id="perfiles-context" rows="8" class="w-full mt-4 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-blue-500 focus:border-transparent transition" placeholder="Pega aquí el texto a analizar para generar el perfil (ej. extractos de sentencias, escritos, transcripciones)..."></textarea>
-                        <button id="run-perfiles" class="w-full mt-6 bg-brand-blue-600 text-white font-bold py-3 px-4 rounded-md hover:bg-brand-blue-700 transition-colors duration-300 shadow-md">Generar Perfil</button>
-                        <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-md">
-                            <p class="font-bold">Versión DEMO:</p>
-                            <p class="text-sm">Funcionalidad completa en la versión premium. Por favor, pegue el texto directamente. La carga de documentos estará disponible en la versión completa.</p>
+                    
+                    <p class="text-gray-700 mb-6">Obtenga una ventaja estratégica. Pegue textos (ej. extractos de sentencias, escritos, transcripciones de audiencias) de un abogado o juez y LEXIS PRODIGIUM analizará su estilo, argumentos recurrentes, patrones de decisión y posibles sesgos.</p>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">Texto para análisis</label>
+                        <textarea id="perfiles-context" rows="8" class="input-field" placeholder="Pega aquí el texto a analizar para generar el perfil (ej. extractos de sentencias, escritos, transcripciones)..."></textarea>
+                    </div>
+                    
+                    <button id="run-perfiles" class="btn-primary w-full">
+                        <i class="fas fa-user-cog mr-2"></i> Generar Perfil
+                    </button>
+                    
+                    <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 rounded">
+                        <div class="flex items-start">
+                            <i class="fas fa-info-circle text-yellow-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-bold">Versión DEMO:</p>
+                                <p class="text-sm">Funcionalidad completa en la versión premium. Por favor, pegue el texto directamente. La carga de documentos estará disponible en la versión completa.</p>
+                            </div>
                         </div>
                     </div>
-                </section>
-            </main>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="toast">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span>Texto copiado al portapapeles</span>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 serif-font">LEXIS PRODIGIUM</h3>
+                    <p class="text-gray-400">IA Estratégica para Abogados de Élite en Michoacán</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Características</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Análisis de Contratos</a></li>
+                        <li><a href="#" class="hover:text-white transition">Análisis de Estrategia</a></li>
+                        <li><a href="#" class="hover:text-white transition">Generador de Escritos</a></li>
+                        <li><a href="#" class="hover:text-white transition">Generador de Perfiles</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Recursos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Documentación</a></li>
+                        <li><a href="#" class="hover:text-white transition">Tutoriales</a></li>
+                        <li><a href="#" class="hover:text-white transition">Casos de Éxito</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contacto</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-brand-blue"></i>
+                            <div>
+                                <span class="block">Email</span>
+                                <a href="mailto:vaiasolutionmx@gmail.com" class="hover:text-white transition">vaiasolutionmx@gmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mt-1 mr-3 text-brand-blue"></i>
+                            <div>
+                                <span class="block">Celular</span>
+                                <a href="tel:523327932894" class="hover:text-white transition">+52 3327932894</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-brand-blue"></i>
+                            <div>
+                                <span class="block">Ubicación</span>
+                                <span>Guadalajara, Jalisco</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 LEXIS PRODIGIUM. Todos los derechos reservados.</p>
+            </div>
         </div>
-    </div>
+    </footer>
 
-    <div id="toast-notification" class="fixed bottom-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg transition-opacity duration-300 opacity-0 hidden">
-        Texto copiado al portapapeles!
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elements
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const menuBtn = document.getElementById('menu-btn');
+            const startDemoBtn = document.getElementById('start-demo-btn');
+            const navItems = document.querySelectorAll('.sidebar-item');
+            const demoSections = document.querySelectorAll('.demo-section');
+            const resultContainer = document.getElementById('result-container');
+            const spinner = document.getElementById('spinner');
+            const resultContent = document.getElementById('result-content');
+            const errorMessage = document.getElementById('error-message');
+            const resultActions = document.getElementById('result-actions');
+            const timeSavingMessage = document.getElementById('time-saving-message');
+            const toast = document.getElementById('toast-notification');
+            
+            // Mobile menu toggle
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('show');
+            });
+            
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+            });
+            
+            // Start demo button
+            startDemoBtn.addEventListener('click', () => {
+                document.querySelector('.hero-section').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Navigation
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const demoId = item.getAttribute('data-demo');
+                    
+                    // Update active nav item
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Show corresponding demo section
+                    demoSections.forEach(section => {
+                        section.classList.add('hidden');
+                        section.classList.remove('fade-in');
+                    });
+                    
+                    const activeSection = document.getElementById(`demo-${demoId}`);
+                    activeSection.classList.remove('hidden');
+                    setTimeout(() => activeSection.classList.add('fade-in'), 10);
+                    
+                    // Hide results
+                    resultContainer.classList.add('hidden');
+                    
+                    // Close mobile menu
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('show');
+                });
+            });
+            
+            // Demo buttons
+            document.getElementById('run-contratos').addEventListener('click', () => {
+                const context = document.getElementById('contratos-context').value;
+                if (context.trim()) {
+                    simulateAnalysis('contratos', context);
+                } else {
+                    showToast('Por favor, ingrese el texto del contrato', 'warning');
+                }
+            });
+            
+            document.getElementById('run-strategy').addEventListener('click', () => {
+                const context = document.getElementById('strategy-context').value;
+                if (context.trim()) {
+                    simulateAnalysis('strategy', context);
+                } else {
+                    showToast('Por favor, ingrese el resumen del caso', 'warning');
+                }
+            });
+            
+            document.getElementById('run-document').addEventListener('click', () => {
+                const query = document.getElementById('document-query').value;
+                const context = document.getElementById('document-context').value;
+                if (query.trim() && context.trim()) {
+                    simulateAnalysis('document', query, context);
+                } else {
+                    showToast('Por favor, complete todos los campos', 'warning');
+                }
+            });
+            
+            document.getElementById('run-perfiles').addEventListener('click', () => {
+                const context = document.getElementById('perfiles-context').value;
+                if (context.trim()) {
+                    simulateAnalysis('perfiles', context);
+                } else {
+                    showToast('Por favor, ingrese el texto para análisis', 'warning');
+                }
+            });
+            
+            // Result actions
+            document.getElementById('copy-button').addEventListener('click', () => {
+                const textToCopy = resultContent.innerText;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showToast('Texto copiado al portapapeles', 'success');
+                }).catch(err => {
+                    console.error('Error al copiar el texto: ', err);
+                    showToast('Error al copiar el texto', 'error');
+                });
+            });
+            
+            document.getElementById('download-button').addEventListener('click', () => {
+                const textToDownload = resultContent.innerText;
+                const blob = new Blob([textToDownload], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'resultado-lexis-prodigium.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showToast('Descarga iniciada', 'success');
+            });
+            
+            document.getElementById('google-search-button').addEventListener('click', () => {
+                const selection = window.getSelection().toString().trim();
+                const textToSearch = selection || resultContent.innerText;
+                if (textToSearch) {
+                    window.open(`https://www.google.com/search?q=${encodeURIComponent(textToSearch)}`, '_blank');
+                }
+            });
+            
+            // Simulate analysis function
+            function simulateAnalysis(type, query, context = '') {
+                // Show spinner
+                resultContainer.classList.remove('hidden');
+                spinner.classList.remove('hidden');
+                resultContent.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+                resultActions.classList.add('hidden');
+                timeSavingMessage.classList.add('hidden');
+                
+                // Scroll to results
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                // Simulate API call delay
+                setTimeout(() => {
+                    spinner.classList.add('hidden');
+                    
+                    // Generate mock results based on type
+                    let mockResult = '';
+                    
+                    switch(type) {
+                        case 'contratos':
+                            mockResult = generateContractAnalysis(query);
+                            break;
+                        case 'strategy':
+                            mockResult = generateStrategyAnalysis(query);
+                            break;
+                        case 'document':
+                            mockResult = generateDocumentDraft(query, context);
+                            break;
+                        case 'perfiles':
+                            mockResult = generateProfileAnalysis(query);
+                            break;
+                    }
+                    
+                    // Display results
+                    resultContent.innerHTML = mockResult;
+                    resultContent.classList.remove('hidden');
+                    resultActions.classList.remove('hidden');
+                    
+                    // Show time saving message
+                    document.getElementById('human-time').textContent = ['varias horas', 'un día completo', 'varios días'][Math.floor(Math.random() * 3)];
+                    document.getElementById('ai-time').textContent = ['segundos', 'menos de un minuto'][Math.floor(Math.random() * 2)];
+                    timeSavingMessage.classList.remove('hidden');
+                    
+                    // Add fade-in animation
+                    resultContent.classList.add('fade-in');
+                }, 2000);
+            }
+            
+            // Mock result generators
+            function generateContractAnalysis(contract) {
+                return `
+                    <h2 class="text-2xl font-bold mb-4 serif-font">Informe de Inteligencia Contractual v4.0</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">1. Diagnóstico General</h3>
+                        <p>El contrato analizado corresponde a un acuerdo de tipo comercial con cláusulas estándar de la industria. Se identifican áreas de mejora significativas en relación con la protección de las partes y la gestión de riesgos.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">2. Matriz de Riesgos y Oportunidades</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="py-2 px-4 border-b text-left">Cláusula/Omisión</th>
+                                        <th class="py-2 px-4 border-b text-left">Riesgo Identificado</th>
+                                        <th class="py-2 px-4 border-b text-left">Impacto Financiero</th>
+                                        <th class="py-2 px-4 border-b text-left">Nivel de Amenaza</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Cláusula 5.2</td>
+                                        <td class="py-2 px-4 border-b">Falta de definición clara sobre penalizaciones por incumplimiento</td>
+                                        <td class="py-2 px-4 border-b">Medio: $15,000 - $30,000 MXN</td>
+                                        <td class="py-2 px-4 border-b"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">Medio</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Omisión</td>
+                                        <td class="py-2 px-4 border-b">Ausencia de cláusula de confidencialidad</td>
+                                        <td class="py-2 px-4 border-b">Alto: $50,000 - $100,000 MXN</td>
+                                        <td class="py-2 px-4 border-b"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">Alto</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Cláusula 8.1</td>
+                                        <td class="py-2 px-4 border-b">Jurisdicción exclusiva a favor de la contraparte</td>
+                                        <td class="py-2 px-4 border-b">Crítico: $100,000+ MXN</td>
+                                        <td class="py-2 px-4 border-b"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">Crítico</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">3. Recomendaciones Estratégicas</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Cláusula de Penalizaciones:</strong> Implementar una cláusula clara que establezca penalizaciones del 5% sobre el valor del contrato por cada día de retraso.</li>
+                            <li><strong>Confidencialidad:</strong> Añadir una cláusula de confidencialidad con vigencia de 5 años posteriores a la terminación del contrato.</li>
+                            <li><strong>Jurisdicción:</strong> Modificar la cláusula para establecer jurisdicción concurrente o someter a arbitraje de la Cámara de Comercio de Morelia.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-brand-blue">
+                        <h4 class="font-bold mb-2">ROI de la Mitigación</h4>
+                        <p>La implementación de estas recomendaciones reduciría el riesgo legal en un 87% y representaría un ahorro potencial de $125,000 - $180,000 MXN en costos de litigio.</p>
+                    </div>
+                `;
+            }
+            
+            function generateStrategyAnalysis(caseSummary) {
+                return `
+                    <h2 class="text-2xl font-bold mb-4 serif-font">Directiva de Campaña Legal v4.0</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">1. Teatro de Operaciones</h3>
+                        <p>El caso se desarrolla en el ámbito del derecho agrario y de aguas en Michoacán, con implicaciones ambientales y de propiedad comunitaria. Los activos en disputa incluyen derechos de uso de agua y terrenos agrícolas.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">2. Mapeo de Stakeholders</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Adversario Principal</h4>
+                                <p>Ejido colindante con representación legal activa. Historial de litigios similares con resolución favorable en 60% de los casos.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Autoridades Involucradas</h4>
+                                <p>Consejo de Cuenca Lerma-Chapala, Procuraduría Agraria, Tribunal Superior de Justicia de Michoacán.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Actores Políticos</h4>
+                                <p>Gobierno del Estado de Michoacán, diputados locales de la región, presidentes municipales de Uruapan y Peribán.</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Organizaciones de la Sociedad Civil</h4>
+                                <p>ONGs ambientalistas locales, asociaciones de productores de aguacate, comunidades indígenas de la zona.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">3. Hoja de Ruta Estratégica</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="py-2 px-4 border-b text-left">Acción</th>
+                                        <th class="py-2 px-4 border-b text-left">Probabilidad de Éxito</th>
+                                        <th class="py-2 px-4 border-b text-left">Tiempo Estimado</th>
+                                        <th class="py-2 px-4 border-b text-left">Costo Estimado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Mediación ante Procuraduría Agraria</td>
+                                        <td class="py-2 px-4 border-b">75%</td>
+                                        <td class="py-2 px-4 border-b">2-3 meses</td>
+                                        <td class="py-2 px-4 border-b">$25,000 - $40,000 MXN</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Juicio de Amparo Indirecto</td>
+                                        <td class="py-2 px-4 border-b">65%</td>
+                                        <td class="py-2 px-4 border-b">8-12 meses</td>
+                                        <td class="py-2 px-4 border-b">$80,000 - $120,000 MXN</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Estrategia de Comunicación</td>
+                                        <td class="py-2 px-4 border-b">90%</td>
+                                        <td class="py-2 px-4 border-b">Continuo</td>
+                                        <td class="py-2 px-4 border-b">$15,000 - $25,000 MXN</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">4. Simulación de Escenarios</h3>
+                        <div class="space-y-4">
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                                <h4 class="font-semibold mb-2">Escenario 1: Fallo desfavorable en mediación</h4>
+                                <p><strong>Plan B:</strong> Presentar amparo contra la resolución de la Procuraduría Agraria, argumentando violación al debido proceso y falta de fundamentación técnica en la determinación de derechos de agua.</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                <h4 class="font-semibold mb-2">Escenario 2: Oferta de acuerdo por la contraparte</h4>
+                                <p><strong>Plan B:</strong> Aceptar negociación con condiciones mínimas: reconocimiento del 70% de los derechos de agua actuales y formalización de un convenio de uso compartido con supervisión técnica.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-brand-blue">
+                        <h4 class="font-bold mb-2">Recomendación Final</h4>
+                        <p>Iniciar con estrategia de mediación mientras se prepara paralelamente el amparo. Implementar campaña de comunicación para posicionar el caso como un referente en gestión sostenible del agua en la región.</p>
+                    </div>
+                `;
+            }
+            
+            function generateDocumentDraft(docType, details) {
+                return `
+                    <h2 class="text-2xl font-bold mb-4 serif-font">BORRADOR DE ESCRITO LEGAL: ${docType.toUpperCase()}</h2>
+                    
+                    <div class="mb-6 bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2">Datos del Documento</h3>
+                        <p><strong>Tipo:</strong> ${docType}</p>
+                        <p><strong>Juzgado:</strong> Juzgado Primero de Distrito en Materia Civil en el Estado de Michoacán</p>
+                        <p><strong>Expediente:</strong> 123/2023</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-2">Contenido del Documento</h3>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <p class="mb-4"><strong>C. JUEZ PRIMERO DE DISTRITO EN MATERIA CIVIL EN EL ESTADO DE MICHOACÁN</strong></p>
+                            <p class="mb-4"><strong>P R E S E N T E</strong></p>
+                            
+                            <p class="mb-4">${details.includes('Actor') ? details.match(/Actor:\s*(.*)/)[1].toUpperCase() : 'NOMBRE DEL ACTOR'}, por mi propio derecho y señalando como domicilio para oír y recibir notificaciones el ubicado en [DOMICILIO], ante Usted con el debido respeto comparezco y expongo:</p>
+                            
+                            <p class="mb-4">Que por medio del presente escrito, vengo a promover demanda de [TIPO DE DEMANDA] en contra de ${details.includes('Demandado') ? details.match(/Demandado:\s*(.*)/)[1].toUpperCase() : 'NOMBRE DEL DEMANDADO'}, con fundamento en los siguientes:</p>
+                            
+                            <h4 class="font-semibold mb-2 mt-4">HECHOS</h4>
+                            <ol class="list-decimal pl-5 mb-4">
+                                <li class="mb-2">Es [HECHO 1 EXTRAÍDO DE LOS DETALLES PROPORCIONADOS].</li>
+                                <li class="mb-2">Como consecuencia de lo anterior, [HECHO 2 EXTRAÍDO DE LOS DETALLES PROPORCIONADOS].</li>
+                                <li class="mb-2">El demandado ha incurrido en [INCUMPLIMIENTO O VIOLACIÓN], causándome daños y perjuicios.</li>
+                            </ol>
+                            
+                            <h4 class="font-semibold mb-2 mt-4">DERECHO</h4>
+                            <p class="mb-4">Fundo la presente acción en lo dispuesto por los artículos [ARTÍCULOS RELEVANTES DEL CÓDIGO CIVIL PARA EL ESTADO DE MICHOACÁN] y [ARTÍCULOS RELEVANTES DEL CÓDIGO DE PROCEDIMIENTOS CIVILES], así como en la jurisprudencia que a continuación se cita:</p>
+                            
+                            <h4 class="font-semibold mb-2 mt-4">JURISPRUDENCIA</h4>
+                            <p class="mb-4">Tesis: [TESIS RELEVANTE], Semanario Judicial de la Federación y su Gaceta, [AÑO], [TOMO], [PÁGINA].</p>
+                            
+                            <h4 class="font-semibold mb-2 mt-4">PRESTACIONES</h4>
+                            <ol class="list-decimal pl-5 mb-4">
+                                <li class="mb-2">Se condene al demandado al pago de la cantidad de $[CANTIDAD] MXN por concepto de [CONCEPTO].</li>
+                                <li class="mb-2">Se ordene al demandado a [ACCIÓN ESPECÍFICA QUE DEBE REALIZAR].</li>
+                                <li class="mb-2">El pago de las costas y gastos procesales generados.</li>
+                            </ol>
+                            
+                            <p class="mb-4">PROTESTO LO NECESARIO</p>
+                            
+                            <p class="mb-4">[CIUDAD], [FECHA]</p>
+                            
+                            <p class="mb-4"><strong>ATENTAMENTE</strong></p>
+                            
+                            <p>[NOMBRE DEL ACTOR O ABOGADO]</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-brand-blue">
+                        <h4 class="font-bold mb-2">Instrucciones para uso</h4>
+                        <p>Este es un borrador generado automáticamente. Debe revisarse y adaptarse a las circunstancias específicas del caso antes de su presentación. Se recomienda verificar la vigencia de las disposiciones legales citadas.</p>
+                    </div>
+                `;
+            }
+            
+            function generateProfileAnalysis(text) {
+                return `
+                    <h2 class="text-2xl font-bold mb-4 serif-font">Análisis de Perfil Estratégico</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Resumen Ejecutivo</h3>
+                        <p>El análisis del texto proporcionado revela patrones consistentes en el estilo argumentativo, toma de decisiones y enfoques jurídicos. Este perfil estratégico permite anticipar comportamientos y optimizar la interacción con este actor legal.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Estilo Argumentativo</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Fortalezas</h4>
+                                <ul class="list-disc pl-5">
+                                    <li>Estructura lógica rigurosa en sus argumentaciones</li>
+                                    <li>Uso frecuente de precedentes jurisprudenciales</li>
+                                    <li>Capacidad para sintetizar cuestiones complejas</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Debilidades</h4>
+                                <ul class="list-disc pl-5">
+                                    <li>Tendencia a la rigidez interpretativa</li>
+                                    <li>Menor énfasis en aspectos procesales tácticos</li>
+                                    <li>Predisposición a argumentos formalistas sobre sustantivos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Patrones de Decisión</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">Enfoque Principal</h4>
+                                <p>Preferencia por soluciones basadas en la literalidad de la norma y la doctrina establecida, con menor apertura a interpretaciones progresistas o adaptativas.</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">Criterios de Ponderación</h4>
+                                <p>Jerarquía clara de factores: 1) Texto legal, 2) Jurisprudencia vinculante, 3) Doctrina académica, 4) Circunstancias particulares del caso.</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">Sensibilidad a Argumentos</h4>
+                                <p>Mayor receptividad a argumentos técnicos-jurídicos bien fundamentados que a apelaciones emocionales o de equidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Posibles Sesgos</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">1</div>
+                                <div>
+                                    <h4 class="font-semibold">Formalismo Jurídico</h4>
+                                    <p>Tendencia a priorizar el cumplimiento de formalidades procesales sobre la justicia material del caso.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">2</div>
+                                <div>
+                                    <h4 class="font-semibold">Conservadurismo Interpretativo</h4>
+                                    <p>Resistencia a adoptar interpretaciones novedosas o alejadas de la tradición jurídica establecida.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">3</div>
+                                <div>
+                                    <h4 class="font-semibold">Preferencia por la Seguridad Jurídica</h4>
+                                    <p>Inclinación a resolver casos de manera que genere mayor certeza y previsibilidad, incluso a costa de soluciones más equitativas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Recomendaciones Estratégicas</h3>
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-brand-blue">
+                            <ol class="list-decimal pl-5 space-y-2">
+                                <li><strong>Estructurar argumentos con base en precedentes:</strong> Utilizar jurisprudencia reciente y relevante para aumentar la persuasión.</li>
+                                <li><strong>Atender formalidades procesales con especial cuidado:</strong> Evitar objeciones basadas en aspectos técnicos o formales.</li>
+                                <li><strong>Presentar argumentos alternativos:</strong> Incluir tanto interpretaciones tradicionales como enfoques novedosos bien fundamentados.</li>
+                                <li><strong>Enfatizar la seguridad jurídica de la propuesta:</strong> Demostrar cómo la posición defendida genera mayor certeza jurídica.</li>
+                            </ol>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Toast notification
+            function showToast(message, type = 'success') {
+                toast.className = 'toast';
+                toast.querySelector('span').textContent = message;
+                
+                if (type === 'warning') {
+                    toast.style.background = '#f59e0b';
+                } else if (type === 'error') {
+                    toast.style.background = '#ef4444';
+                } else {
+                    toast.style.background = '#10b981';
+                }
+                
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+        });
+    </script>
 </body>
 </html>
